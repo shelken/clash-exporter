@@ -5,7 +5,6 @@ variable "APP" {
 }
 
 variable "VERSION" {
-  // renovate: datasource=github-releases depName=morpheus65535/bazarr
   default = "v0.0.5"
 }
 
