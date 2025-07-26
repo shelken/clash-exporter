@@ -1,8 +1,4 @@
-target "docker-metadata-action" {
-    tags = [
-        "ghcr.io/shelken/${APP}:${VERSION}"
-    ]
-}
+target "docker-metadata-action" {}
 
 variable "APP" {
   default = "clash-exporter"
