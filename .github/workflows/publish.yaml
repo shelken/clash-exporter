@@ -26,6 +26,7 @@ jobs:
     name: Plan
     outputs:
       app: ${{ steps.options.outputs.app }}
+      version: ${{ steps.options.outputs.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
