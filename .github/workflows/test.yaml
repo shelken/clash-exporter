@@ -1,0 +1,38 @@
+name: Test CI
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    paths:
+      - ".github/workflows/test.yaml"
+
+jobs:
+  test:
+    name: TEST 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Application Options
+        id: options
+        shell: bash
+        working-directory: .
+        run: |
+          PLATFORMS=$(\
+              docker buildx bake image-all --print --progress=quiet -f docker-bake.hcl \
+                  | jq --raw-output --compact-output '.target."image-all".platforms' \
+          )
+          SOURCE=$(\
+              docker buildx bake --list type=variables,format=json --progress=quiet -f docker-bake.hcl \
+                  | jq --raw-output '.[] | select(.name == "SOURCE") | .value' \
+          )
+          VERSION=$(\
+              docker buildx bake --list type=variables,format=json --progress=quiet -f docker-bake.hcl \
+                  | jq --raw-output '.[] | select(.name == "VERSION") | .value' \
+          )
+
+          echo "platforms=${PLATFORMS}" >> $GITHUB_OUTPUT
+          echo "source=${SOURCE}" >> $GITHUB_OUTPUT
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
