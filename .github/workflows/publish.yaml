@@ -67,6 +67,8 @@ jobs:
     needs: plan
     name: Build (${{ matrix.platform }})
     runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
+    permissions:
+      packages: write
     strategy: 
       fail-fast: false
       matrix: 
