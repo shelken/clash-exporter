@@ -102,9 +102,9 @@ jobs:
           images: |
             ghcr.io/${{ github.repository_owner }}/${{ needs.plan.outputs.app }}
           tags: |
-            type=semver,pattern={{version}},vault=${{ needs.plan.outputs.version }}
-            type=semver,pattern={{major}}.{{minor}},vault=${{ needs.plan.outputs.version }}
-            type=semver,pattern={{major}},vault=${{ needs.plan.outputs.version }}
+            type=semver,pattern={{version}},vaule=${{ needs.plan.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},vaule=${{ needs.plan.outputs.version }}
+            type=semver,pattern={{major}},vaule=${{ needs.plan.outputs.version }}
             type=raw,value=rolling
 
       - name: Build Application
