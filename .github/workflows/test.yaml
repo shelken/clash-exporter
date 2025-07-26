@@ -6,13 +6,14 @@ name: Test CI
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - ".github/workflows/test.yaml"
 
 jobs:
   test:
-    name: TEST 
+    name: TEST
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
